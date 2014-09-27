@@ -117,6 +117,9 @@ public class LyricsView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        canvas.drawColor(R.color.lyrics_background);
+
         if (layouts_.size() == 0) return;
 
         int begin = findBegin();
