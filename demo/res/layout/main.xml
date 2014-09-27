@@ -4,39 +4,101 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
-    <LinearLayout android:layout_width="fill_parent"
-                  android:layout_height="wrap_content">
-        <Button android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=">"
-                android:onClick="play"/>
-        <Button android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="="
-                android:onClick="pause"/>
-        <Button android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="back"
-                android:onClick="back"/>
-        <Button android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="forward"
-                android:onClick="forward"/>
-
-    </LinearLayout>
 
     <RelativeLayout android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
-        <ImageView
-            android:src="@drawable/black_orange"
-            android:id="@+id/cover"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"/>
-        <simpzan.android.lyrics.LyricsView
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:id="@+id/lyrics"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"/>
+                  android:layout_height="wrap_content">
+        <LinearLayout android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical">
+            <TextView android:layout_width="wrap_content"
+                      android:text="黑色柳丁"
+                      android:textSize="22dp"
+                      android:layout_height="wrap_content"/>
+            <TextView android:layout_width="wrap_content"
+                      android:text="陶喆"
+                      android:textSize="18dp"
+                      android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="≡"/>
     </RelativeLayout>
+
+    <!-- ArtWork -->
+    <RelativeLayout android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+        <ImageView
+                android:src="@drawable/black_orange"
+                android:id="@+id/cover"
+                android:scaleType="centerCrop"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"/>
+        <simpzan.android.lyrics.LyricsView
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:visibility="invisible"
+                android:id="@+id/lyrics"
+                android:layout_width="fill_parent"
+                android:layout_height="380dp"
+                />
+    </RelativeLayout>
+
+    <!-- Seekbar -->
+    <LinearLayout android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="fill_parent"
+                  android:gravity="center_vertical"
+                  android:text="--:--"
+                />
+        <SeekBar android:layout_width="0dp"
+                 android:layout_weight="1"
+                 android:layout_height="wrap_content"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="fill_parent"
+                  android:gravity="center_vertical"
+                  android:text="--:--"
+                />
+    </LinearLayout>
+
+    <!-- Controls -->
+    <LinearLayout android:layout_width="fill_parent"
+                  android:layout_height="wrap_content">
+        <Button android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="S"
+                android:onClick="back"/>
+        <Button android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="«"
+                android:onClick="back"/>
+        <Button android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=">"
+                android:onClick="play"/>
+        <Button android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="||"
+                android:visibility="gone"
+                android:layout_weight="1"
+                android:onClick="pause"/>
+        <Button android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="»"
+                android:onClick="forward"/>
+        <Button android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="L"
+                android:onClick="back"/>
+    </LinearLayout>
+
 </LinearLayout>

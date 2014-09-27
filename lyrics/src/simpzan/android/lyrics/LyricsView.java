@@ -3,6 +3,7 @@ package simpzan.android.lyrics;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -39,7 +40,6 @@ public class LyricsView extends View {
     public LyricsView(Context context, AttributeSet attrs) {
         super(context, attrs);
         textPaint_ = new TextPaint();
-        textPaint_.setColor(Color.BLACK);
         textPaint_.setTextSize(30);
         textPaint_.setAntiAlias(true);
 
@@ -104,7 +104,7 @@ public class LyricsView extends View {
     }
 
     private StaticLayout createStaticLayout(String line) {
-        int width = getWidth();
+        int width = getWidth() - getPaddingLeft() - getPaddingRight();
         return new StaticLayout(line,
                 textPaint_,
                 width,
@@ -118,7 +118,7 @@ public class LyricsView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        canvas.drawColor(R.color.lyrics_background);
+        canvas.drawARGB(144, 0, 0, 0);
 
         if (layouts_.size() == 0) return;
 
@@ -135,11 +135,11 @@ public class LyricsView extends View {
         if (i == index_) {
             textPaint_.setColor(Color.RED);
         } else {
-            textPaint_.setColor(Color.BLACK);
+            textPaint_.setColor(Color.WHITE);
         }
 
         canvas.save();
-        canvas.translate(0, ys_.get(i));
+        canvas.translate(getPaddingLeft(), ys_.get(i));
         layouts_.get(i).draw(canvas);
         canvas.restore();
     }

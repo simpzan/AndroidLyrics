@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import simpzan.android.lyrics.Lyrics;
 import simpzan.android.lyrics.LyricsView;
 import simpzan.android.lyrics.Utils;
@@ -16,6 +17,7 @@ public class MyActivity extends Activity {
 
     MediaPlayer mediaPlayer_;
     LyricsView lyricsView_;
+    private ImageView cover_;
 
     /**
      * Called when the activity is first created.
@@ -25,10 +27,19 @@ public class MyActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        getActionBar().hide();
         initialize();
     }
 
     private void initialize() {
+        cover_ = (ImageView)findViewById(R.id.cover);
+        cover_.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lyricsView_.setVisibility(View.VISIBLE);
+            }
+        });
+
         lyrics = new Lyrics();
         lyrics.loadFromStream(getResources().openRawResource(R.raw.test8));
 
@@ -48,6 +59,7 @@ public class MyActivity extends Activity {
 
         @Override
         public boolean onSingleTapConfirmed(MotionEvent e) {
+            lyricsView_.setVisibility(View.INVISIBLE);
             return true;
         }
     };
