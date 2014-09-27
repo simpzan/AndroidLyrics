@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import simpzan.android.lyrics.Lyrics;
 import simpzan.android.lyrics.LyricsView;
@@ -18,6 +19,8 @@ public class MyActivity extends Activity {
     MediaPlayer mediaPlayer_;
     LyricsView lyricsView_;
     private ImageView cover_;
+    private Button playButton_;
+    private Button pauseButton_;
 
     /**
      * Called when the activity is first created.
@@ -40,8 +43,11 @@ public class MyActivity extends Activity {
             }
         });
 
+        playButton_ = (Button)findViewById(R.id.play_button);
+        pauseButton_ = (Button)findViewById(R.id.pause_button);
+
         lyrics = new Lyrics();
-        lyrics.loadFromStream(getResources().openRawResource(R.raw.test8));
+        lyrics.loadFromStream(getResources().openRawResource(R.raw.test));
 
         lyricsView_ = (LyricsView) findViewById(R.id.lyrics);
         lyricsView_.setTexts(lyrics.getLyricLines());
@@ -91,11 +97,17 @@ public class MyActivity extends Activity {
 
         int timespan = syncLyrics();
         delayedRefresh(timespan);
+
+        pauseButton_.setVisibility(View.VISIBLE);
+        playButton_.setVisibility(View.GONE);
     }
 
     public void pause(View view) {
         mediaPlayer_.pause();
         handler_.removeMessages(0);
+
+        pauseButton_.setVisibility(View.GONE);
+        playButton_.setVisibility(View.VISIBLE);
     }
 
     public void back(View view) {
