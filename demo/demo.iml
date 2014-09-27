@@ -6,9 +6,6 @@
         <option name="UPDATE_PROPERTY_FILES" value="true" />
       </configuration>
     </facet>
-    <facet type="android" name="Android2">
-      <configuration />
-    </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
@@ -18,6 +15,7 @@
     </content>
     <orderEntry type="jdk" jdkName="Android 4.1 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="lyrics" />
     <orderEntry type="module" module-name="lyrics" />
     <orderEntry type="module" module-name="lyrics" />
     <orderEntry type="module" module-name="lyrics" />

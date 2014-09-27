@@ -7,11 +7,6 @@
         <option name="UPDATE_PROPERTY_FILES" value="true" />
       </configuration>
     </facet>
-    <facet type="android" name="Android2">
-      <configuration>
-        <option name="LIBRARY_PROJECT" value="true" />
-      </configuration>
-    </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
@@ -25,6 +20,15 @@
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/libs/commons-io-2.4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Android/android-sdk/extras/vendors/juniversalchardet-1.0.3.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

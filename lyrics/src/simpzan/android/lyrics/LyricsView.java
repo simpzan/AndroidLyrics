@@ -57,6 +57,7 @@ public class LyricsView extends View {
         post(new Runnable() {
             @Override
             public void run() {
+                scrollTo(0, -topPadding);
                 prepare();
             }
         });
@@ -100,7 +101,7 @@ public class LyricsView extends View {
             y += layout.getHeight() + passageSeparatorHeight;
         }
         contentHeight_ = y - topPadding;
-        Log.d(TAG, "y array:" + ys_);
+        Log.v(TAG, "y array:" + ys_);
     }
 
     private StaticLayout createStaticLayout(String line) {
@@ -118,7 +119,7 @@ public class LyricsView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        canvas.drawARGB(144, 0, 0, 0);
+        canvas.drawARGB(180, 0, 0, 0);
 
         if (layouts_.size() == 0) return;
 

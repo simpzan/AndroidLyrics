@@ -2,9 +2,9 @@ package simpzan.android.lyrics;
 
 import android.util.Log;
 import org.apache.commons.io.IOUtils;
+import org.mozilla.universalchardet.UniversalDetector;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,8 +19,10 @@ import java.util.TimeZone;
 public class Lyrics {
     private static final String TAG = Lyrics.class.getName();
 
-    public boolean loadFromStream(InputStream inputStream) {
-        String data = readAll(inputStream);
+
+    public boolean loadFromFile(String lrcFile) {
+        String data = readAllFromFile(lrcFile);
+        if (data == null) return false;
         return parse(data);
     }
 
@@ -58,20 +60,51 @@ public class Lyrics {
         }
         int remaining = nextTs - ms;
 //        if (ms < 0) {
-        Utils.print("ms:" + ms + " index:" + nextTs);
+//        Utils.print("ms:" + ms + " index:" + nextTs);
 //        }
         SeekInfo info = new SeekInfo(index - 1, remaining);
         return info;
     }
 
-    private String readAll(InputStream inputStream) {
-        String result = null;
+    String getFileEncoding(byte[] bytes) {
+        UniversalDetector detector = new UniversalDetector(null);
+        detector.handleData(bytes, 0, bytes.length);
+        detector.dataEnd();
+        String encoding = detector.getDetectedCharset();
+        return encoding;
+    }
+
+    byte[] readContentOfFile(String file) {
+        File f = new File(file);
+        byte[] result = new byte[(int)f.length()];
+        FileInputStream fileInputStream = null;
         try {
-            result = IOUtils.toString(inputStream);
+            fileInputStream = new FileInputStream(f);
+            fileInputStream.read(result);
+            return result;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return result;
+        if (fileInputStream != null) try {
+            fileInputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private String readAllFromFile(String file) {
+        byte[] bytes = readContentOfFile(file);
+        if (bytes == null)  return null;
+        String encoding = getFileEncoding(bytes);
+        try {
+            return new String(bytes, encoding);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static int TimeString2Int(String time) {
